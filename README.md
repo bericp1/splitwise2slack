@@ -2,6 +2,11 @@
 
 A basic express web server to connect [Splitwise](https://splitwise.com/) to [Slack](http://slack.com)
 
+## Requirements
+
+ * Nodejs + npm
+ * mongodb server
+
 ## Building
 
     $ git clone https://github.com/bericp1/splitwise2slack.git
