@@ -17,7 +17,12 @@ Splitwise2Slack is configured via a [dotenv](https://github.com/motdotla/dotenv)
  1. Go [here](https://secure.splitwise.com/oauth_clients) and create a Splitwise OAuth Consumer
     * Your callback URL must point to the `/oauth/callback` route on your server, e.g. `http://localhost:3000/oauth/callback`
  2. Copy the `.env.example` file in the root of the project to `.env` (still in the root of the project)
- 3. Edit .env to have the appropriate values (see all possible configurable environment variables below)
+ 3. Edit .env to have the appropriate values (see all possible configurable environment variables below).
+    At minimum, you should update
+    * `SECRET`
+    * `SPLITWISE_OAUTH_KEY`
+    * `SPLITWISE_OAUTH_SECRET`
+    * `MONGODB_URI` (when running locally, not in heroku w/ Mongolab; [see below](#mongodb_uri))
 
 ### All Environment Variables
 
@@ -112,8 +117,8 @@ deployment, use the heroku toolbelt `config:set NAME=VALUE` command or use the h
 the toolbelt:
 
     $ heroku config:set SECRET=abc123
-    $ heroku config:set SPLITWISE_OAUTH_CALLBACK_URL=
-    $ heroku config:set SLACK_CHANNEL=splitwise
+    $ heroku config:set SPLITWISE_OAUTH_KEY=abc123
+    $ heroku config:set SPLITWISE_OAUTH_SECRET=abc123
     ...
 
 ## Usage
