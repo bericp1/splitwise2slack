@@ -13,27 +13,75 @@ A basic express web server to connect [Splitwise](https://splitwise.com/) to [Sl
 Splitwise2Slack is configured via a [dotenv](https://github.com/motdotla/dotenv). Copy the `.env.example` file in the root
 of the project to `.env` and edit with appropriate values.
 
-### `PORT` (default: `3000`) (required)
+### `PORT`
 
-### `SECRET` (default: random)
+**(default: `3000`) (required)**
 
-### `MONGODB_URI` (default: none) (required)
+The `PORT` to run on. Heroku sets this automatically.
 
-### `SPLITWISE_OAUTH_VERSION` (default: `1.0`)
+### `SECRET`
 
-### `SPLITWISE_OAUTH_KEY` (default: none) (required)
+**(default: random)**
 
-### `SPLITWISE_OAUTH_SECRET` (default: none) (required)
+This is the "password" used to protect the admin interface. If not set, it will be randomly generated with
+each server boot.
 
-### `SPLITWISE_OAUTH_REQUEST_URL` (default: `https://secure.splitwise.com/api/v3.0/get_request_token`) (required)
+### `MONGODB_URI`
 
-### `SPLITWISE_OAUTH_TOKEN_URL` (default: `https://secure.splitwise.com/api/v3.0/get_access_token`) (required)
+**(default: none) (required)**
 
-### `SPLITWISE_OAUTH_AUTHORIZE_URL` (default: `https://secure.splitwise.com/authorize`) (required)
+This is the connection URI of the mongodb to connect to. This will be overridden by `MONGOLAB_URI` if present
+for Heroku Mongolab support.
 
-### `SPLITWISE_OAUTH_CALLBACK_URL` (default: none) (required)
+### `SPLITWISE_OAUTH_VERSION`
 
-### `SPLITWISE_OAUTH_SIGNATURE_METHOD` (default: `HMAC-SHA1`) (required)
+**(default: `1.0`)**
+
+The OAuth version to use with Splitwise. Shouldn't need to be changed.
+
+### `SPLITWISE_OAUTH_KEY` 
+
+**(default: none) (required)**
+
+Your Splitwise OAuth consumer key. Create a Splitwise OAuth consumer [here](https://secure.splitwise.com/oauth_clients).
+
+### `SPLITWISE_OAUTH_SECRET` 
+
+**(default: none) (required)**
+
+Your Splitwise OAuth consumer secret. Create a Splitwise OAuth consumer [here](https://secure.splitwise.com/oauth_clients).
+
+### `SPLITWISE_OAUTH_REQUEST_URL` 
+
+**(default: `https://secure.splitwise.com/api/v3.0/get_request_token`) (required)**
+
+The OAuth endpoint for requesting request tokens. Shouldn't need to be changed.
+
+### `SPLITWISE_OAUTH_TOKEN_URL` 
+
+**(default: `https://secure.splitwise.com/api/v3.0/get_access_token`) (required)**
+
+The OAuth endpoint for requesting access tokens. Shouldn't need to be changed.
+
+### `SPLITWISE_OAUTH_AUTHORIZE_URL` 
+
+**(default: `https://secure.splitwise.com/authorize`) (required)**
+
+The OAuth endpoint which the user is redirected to to authorize Splitwise2Slack on their Splitwise account.
+Shouldn't need to be changed.
+
+### `SPLITWISE_OAUTH_CALLBACK_URL` 
+
+**(default: none) (required)**
+
+This is the authorization callback URL you gave to Splitwise when
+[creating your OAuth consumer](https://secure.splitwise.com/oauth_clients).
+
+### `SPLITWISE_OAUTH_SIGNATURE_METHOD`
+
+**(default: `HMAC-SHA1`) (required)**
+
+The signature method to use when signing Splitwise OAuth requests. Shouldn't need to be changed.
 
 ## Running
 
