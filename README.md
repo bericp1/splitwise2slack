@@ -125,7 +125,10 @@ the toolbelt:
 
 ### The Front-end
 
-The front-end administrative panel available at `/` when the server is running is used to manage the links.
+The front-end administrative panel available at `/` when the server is running is used to manage the links and is
+password protected (or, at least, the API is). The password is set via the `SECRET` environment/config variable.
+The secret/password, when entered correctly, is stored in the browser via cookies so it doesn't have to be re-entered
+every time.
 
 ### Links
 
@@ -140,3 +143,4 @@ env variables). In the future, the slack side of the link will use the slack OAu
  - [ ] Action buttons to test link
  - [ ] Zapier integration
  - [ ] Use slack OAuth 2.0
+ - [ ] User system to support multi-user where users own/are responsible for links.
