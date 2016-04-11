@@ -18,12 +18,12 @@ var config = {
     key: process.env.SPLITWISE_OAUTH_KEY || '',
     secret: process.env.SPLITWISE_OAUTH_SECRET || '',
     urls: {
-      request: process.env.SPLITWISE_OAUTH_REQUEST_URL || '',
-      token: process.env.SPLITWISE_OAUTH_TOKEN_URL || '',
-      authorize: process.env.SPLITWISE_OAUTH_AUTHORIZE_URL || '',
+      request: process.env.SPLITWISE_OAUTH_REQUEST_URL || 'https://secure.splitwise.com/api/v3.0/get_request_token',
+      token: process.env.SPLITWISE_OAUTH_TOKEN_URL || 'https://secure.splitwise.com/api/v3.0/get_access_token',
+      authorize: process.env.SPLITWISE_OAUTH_AUTHORIZE_URL || 'https://secure.splitwise.com/authorize',
       callback: process.env.SPLITWISE_OAUTH_CALLBACK_URL || ''
     },
-    signatureMethod: process.env.SPLITWISE_OAUTH_SIGNATURE_METHOD
+    signatureMethod: process.env.SPLITWISE_OAUTH_SIGNATURE_METHOD || 'HMAC-SHA1'
   },
 
   mongodb: {
