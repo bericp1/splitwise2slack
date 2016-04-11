@@ -4,8 +4,6 @@ npm-debug.log
 .idea
 /_
 
-.bowerrc
-
 /public/vendor
 
 .env
