@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Splitwise2Slack</title>
+
+    <link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
+    <link href="vendor/angular/angular-csp.css" rel="stylesheet">
+    <link href="app.css" rel="stylesheet">
+</head>
+<body ng-app="splitwise2slack">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Splitwise2Slack</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="#">Home</a></li>-->
+            <!--</ul>-->
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container ng-cloak" ng-controller="MainController as main" ng-cloak>
+    <div class="row" ng-show="main.state.error">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-danger">
+                {{ main.state.error }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" id="controls">
+            <h2>Controls</h2>
+            <div class="well">
+                <div class="form-group">
+                    <label>Secret</label>
+                    <input type="text" placeholder="required" class="form-control" ng-model="main.data.secret">
+                </div>
+                <div class="form-group">
+                    <a href="#" ng-click="main.fetchLinks($event)" class="btn btn-primary btn-block">Fetch Links</a>
+                </div>
+            </div>
+            <h2>New Link</h2>
+            <div class="well">
+                <div class="form-group">
+                    <label>Link Name</label>
+                    <input type="text" placeholder="required" class="form-control" ng-model="main.data.new_link_name">
+                </div>
+                <div class="form-group">
+                    <a href="#" ng-click="main.newLink($event)" class="btn btn-primary btn-block">Start Linking Process</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h2>Links</h2>
+            <h3 class="text-muted" ng-show="main.state.loading">Loading...</h3>
+            <h3 class="text-muted" ng-show="!main.state.fetched">&lt;----</h3>
+            <h3 class="text-muted" ng-show="main.state.fetched && !main.state.loading && main.data.links.length === 0">None</h3>
+            <div ng-show="main.data.links.length > 0">
+                <div class="panel panel-default" ng-repeat="link in main.data.links">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">
+                            {{ link.name }}
+                            <small class="text-muted pull-right">{{ link._id }}</small>
+                        </h1>
+                    </div>
+                    <div class="panel-body">
+                        <dl>
+                            <dt>Splitwise Account:</dt>
+                            <dd>
+                                <img ng-if="link.splitwise_account.picture && link.splitwise_account.picture.small"
+                                ng-src="{{link.splitwise_account.picture.small}}">
+                                {{link.splitwise_account.first_name}} {{link.splitwise_account.last_name}}
+                                ({{link.splitwise_account.email}}) ({{link.splitwise_account.id}})
+                            </dd>
+                            <dt>Splitwise Access Token:</dt>
+                            <dd>{{ link.splitwise_token }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<script src="vendor/angular-animate/angular-animate.js"></script>
+<script src="vendor/angular-touch/angular-touch.js"></script>
+<script src="vendor/angular-cookies/angular-cookies.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
